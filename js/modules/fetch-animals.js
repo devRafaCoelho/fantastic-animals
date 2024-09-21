@@ -1,4 +1,4 @@
-import initAnimatedNumbers from "./animated-numbers.js";
+import AnimatedNumbers from "./animated-numbers.js";
 
 export default function initFetchAnimals() {
   async function fecthAnimals(url) {
@@ -12,7 +12,8 @@ export default function initFetchAnimals() {
         gridNumbers.appendChild(divAnimalData);
       });
 
-      initAnimatedNumbers();
+      const animatedNumbers = new AnimatedNumbers("[data-number]", ".numbers");
+      animatedNumbers.init();
     } catch (error) {
       console.error("Error when fetching data:", error);
     }
