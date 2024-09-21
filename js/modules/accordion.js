@@ -1,22 +1,26 @@
-const initAccordion = () => {
-  const accordionList = document.querySelectorAll(
-    '[data-animated="accordion"] dt'
-  );
-  const activeClass = "active";
+export default class Accordion {
+  constructor(list) {
+    this.accordionList = document.querySelectorAll(list);
+    this.activeClass = "active";
+  }
 
-  if (accordionList.length) {
-    accordionList[0].classList.add(activeClass);
-    accordionList[0].nextElementSibling.classList.add(activeClass);
+  handleToggleAccordion(element) {
+    element.classList.toggle(this.activeClass);
+    element.nextElementSibling.classList.toggle(this.activeClass);
+  }
 
-    const handleActiveAccordion = (event) => {
-      this.classList.toggle(activeClass);
-      this.nextElementSibling.classList.toggle(activeClass);
-    };
-
-    accordionList.forEach((element) => {
-      element.addEventListener("click", handleActiveAccordion);
+  addEvent() {
+    this.accordionList.forEach((element) => {
+      element.addEventListener("click", () =>
+        this.handleToggleAccordion(element)
+      );
     });
   }
-};
 
-export default initAccordion;
+  init() {
+    if (this.accordionList.length) {
+      this.handleToggleAccordion(this.accordionList[0]);
+      this.addEvent();
+    }
+  }
+}

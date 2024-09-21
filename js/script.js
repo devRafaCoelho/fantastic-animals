@@ -1,5 +1,5 @@
 import initTabNavigation from "./modules/tab-navigation.js";
-import initAccordion from "./modules/accordion.js";
+import Accordion from "./modules/accordion.js";
 import initAnimatedScroll from "./modules/animated-scroll.js";
 import initModal from "./modules/modal.js";
 import initTooltip from "./modules/tooltip.js";
@@ -10,7 +10,6 @@ import initFetchAnimals from "./modules/fetch-animals.js";
 import initFecthBitcoin from "./modules/fetch-bitcoin.js";
 
 initTabNavigation();
-initAccordion();
 initAnimatedScroll();
 initModal();
 initTooltip();
@@ -19,3 +18,6 @@ initMenuMobile();
 initOpeningHours();
 initFetchAnimals();
 initFecthBitcoin();
+
+const accordion = new Accordion('[data-animated="accordion"] dt');
+accordion.init();
