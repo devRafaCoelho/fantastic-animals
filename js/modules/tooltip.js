@@ -1,52 +1,55 @@
-const initTooltip = () => {
-  const tooltips = document.querySelectorAll("[data-tooltip]");
+export default class Tooltip {
+  constructor(tooltips) {
+    this.tooltips = document.querySelectorAll(tooltips);
+    this.handleMouseMove = this.handleMouseMove.bind(this);
+    this.handleMouseLeave = this.handleMouseLeave.bind(this);
+    this.handleMouseOver = this.handleMouseOver.bind(this);
+  }
 
-  const handleMouseOver = (event) => {
-    const tooltipBox = createTooltip(event.currentTarget);
+  handleMouseOver({ currentTarget }) {
+    this.createTooltip(currentTarget);
 
-    tooltipBox.style.top = `${event.pageY}px`;
-    tooltipBox.style.left = `${event.pageX}px`;
+    this.tooltipBox.style.top = `${event.pageY}px`;
+    this.tooltipBox.style.left = `${event.pageX}px`;
 
-    handleMouseLeave.tooltipBox = tooltipBox;
-    handleMouseLeave.element = event.currentTarget;
-    event.currentTarget.addEventListener("mouseleave", handleMouseLeave);
+    currentTarget.addEventListener("mouseleave", this.handleMouseLeave);
+    currentTarget.addEventListener("mousemove", this.handleMouseMove);
+  }
 
-    handleMouseMove.tooltipBox = tooltipBox;
-    event.currentTarget.addEventListener("mousemove", handleMouseMove);
-  };
-
-  const createTooltip = (element) => {
+  createTooltip(element) {
     const tooltipBox = document.createElement("div");
     const text = element.getAttribute("aria-label");
 
     tooltipBox.classList.add("tooltip");
     tooltipBox.innerText = text;
     document.body.appendChild(tooltipBox);
-    return tooltipBox;
-  };
+    this.tooltipBox = tooltipBox;
+  }
 
-  const handleMouseLeave = {
-    tooltipBox: "",
-    element: "",
-    handleEvent() {
-      this.tooltipBox.remove();
-      this.element.removeEventListener("mouseleave", handleMouseLeave);
-      this.element.removeEventListener("mousemove", handleMouseMove);
-    },
-  };
+  handleMouseMove(event) {
+    this.tooltipBox.style.top = event.pageY + 20 + "px";
 
-  const handleMouseMove = {
-    tooltipBox: "",
-    element: "",
-    handleEvent(event) {
-      this.tooltipBox.style.top = event.pageY + 20 + "px";
-      this.tooltipBox.style.left = event.pageX + 20 + "px";
-    },
-  };
+    event.pageX + 240 > window.innerWidth
+      ? (this.tooltipBox.style.left = event.pageX - 150 + "px")
+      : (this.tooltipBox.style.left = event.pageX + 20 + "px");
+  }
 
-  tooltips.forEach((element) => {
-    element.addEventListener("mouseover", handleMouseOver);
-  });
-};
+  handleMouseLeave({ currentTarget }) {
+    this.tooltipBox.remove();
+    currentTarget.removeEventListener("mouseleave", this.handleMouseLeave);
+    currentTarget.removeEventListener("mousemove", this.handleMouseMove);
+  }
 
-export default initTooltip;
+  addEvent() {
+    this.tooltips.forEach((element) => {
+      element.addEventListener("mouseover", this.handleMouseOver);
+    });
+  }
+
+  init() {
+    if (this.tooltips.length) {
+      this.addEvent();
+    }
+    return this;
+  }
+}
