@@ -3,13 +3,12 @@ import Accordion from "./modules/accordion.js";
 import AnimatedScroll from "./modules/animated-scroll.js";
 import Modal from "./modules/modal.js";
 import Tooltip from "./modules/tooltip.js";
-import initDropdownMenu from "./modules/dropdown-menu.js";
+import DropdownMenu from "./modules/dropdown-menu.js";
 import initMenuMobile from "./modules/menu-mobile.js";
 import initOpeningHours from "./modules/opening-hours.js";
 import initFetchAnimals from "./modules/fetch-animals.js";
 import initFecthBitcoin from "./modules/fetch-bitcoin.js";
 
-initDropdownMenu();
 initMenuMobile();
 initOpeningHours();
 initFetchAnimals();
@@ -36,3 +35,6 @@ tooltip.init();
 
 const animatedScroll = new AnimatedScroll('[data-animated="scroll"]');
 animatedScroll.init();
+
+const dropdownMenu = new DropdownMenu("[data-dropdown]");
+dropdownMenu.init();
