@@ -5,11 +5,10 @@ import Modal from "./modules/modal.js";
 import Tooltip from "./modules/tooltip.js";
 import DropdownMenu from "./modules/dropdown-menu.js";
 import MenuMobile from "./modules/menu-mobile.js";
-import initOpeningHours from "./modules/opening-hours.js";
+import OpeningHours from "./modules/opening-hours.js";
 import initFetchAnimals from "./modules/fetch-animals.js";
 import initFecthBitcoin from "./modules/fetch-bitcoin.js";
 
-initOpeningHours();
 initFetchAnimals();
 initFecthBitcoin();
 
@@ -40,3 +39,6 @@ dropdownMenu.init();
 
 const menuMobile = new MenuMobile('[data-menu="button"]', '[data-menu="list"]');
 menuMobile.init();
+
+const openingHours = new OpeningHours("[data-week]");
+openingHours.init();
