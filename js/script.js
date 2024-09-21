@@ -10,7 +10,6 @@ import initFetchAnimals from "./modules/fetch-animals.js";
 import initFecthBitcoin from "./modules/fetch-bitcoin.js";
 
 initAnimatedScroll();
-initModal();
 initTooltip();
 initDropdownMenu();
 initMenuMobile();

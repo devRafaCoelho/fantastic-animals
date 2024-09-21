@@ -4,28 +4,24 @@ export default class Modal {
     this.closeButton = document.querySelector(closeButton);
     this.container = document.querySelector(container);
     this.activeClass = "active";
-    this.eventToggleModal = this.eventToggleModal.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
     this.closeModalOut = this.closeModalOut.bind(this);
   }
 
-  toggleModal() {
-    this.container.classList.toggle(this.activeClass);
-  }
-
-  eventToggleModal(event) {
+  toggleModal(event) {
     event.preventDefault();
-    this.toggleModal();
+    this.container.classList.toggle(this.activeClass);
   }
 
   closeModalOut(event) {
     if (event.target === this.container) {
-      this.toggleModal();
+      this.toggleModal(event);
     }
   }
 
   addEvent() {
-    this.openButton.addEventListener("click", this.eventToggleModal);
-    this.closeButton.addEventListener("click", this.eventToggleModal);
+    this.openButton.addEventListener("click", this.toggleModal);
+    this.closeButton.addEventListener("click", this.toggleModal);
     this.container.addEventListener("click", this.closeModalOut);
   }
 
