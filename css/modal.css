@@ -1,0 +1,84 @@
+.modal-container {
+  width: 100%;
+  height: 100vh;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+  max-width: 500px;
+  width: 80%;
+  padding: 40px;
+  border: 5px solid #fb5;
+  background: #fff;
+  box-shadow: 0 0 0 5px #fff;
+  position: relative;
+}
+
+.close {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  border: 4px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
+  background: #e54;
+  color: #fff;
+  cursor: pointer;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 1.2rem;
+}
+
+.modal label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 1.2rem;
+  display: block;
+  font-weight: bold;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.modal input {
+  width: 100%;
+  padding: 0.7rem 0.5rem;
+  box-sizing: border-box;
+}
+
+.modal button[type="submit"] {
+  width: 100%;
+  display: block;
+  background: #e54;
+  border: none;
+  border-radius: 4px;
+  padding: 0.7rem 2rem;
+  color: #fff;
+  margin-top: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.modal-container.active {
+  display: flex;
+}
+
+.active .modal {
+  animation: show-modal 0.3s forwards;
+}
+
+@keyframes show-modal {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -30px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
