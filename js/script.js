@@ -2,7 +2,7 @@ import TabNavigation from "./modules/tab-navigation.js";
 import Accordion from "./modules/accordion.js";
 import initAnimatedScroll from "./modules/animated-scroll.js";
 import Modal from "./modules/modal.js";
-import initTooltip from "./modules/tooltip.js";
+import Tooltip from "./modules/tooltip.js";
 import initDropdownMenu from "./modules/dropdown-menu.js";
 import initMenuMobile from "./modules/menu-mobile.js";
 import initOpeningHours from "./modules/opening-hours.js";
@@ -10,7 +10,6 @@ import initFetchAnimals from "./modules/fetch-animals.js";
 import initFecthBitcoin from "./modules/fetch-bitcoin.js";
 
 initAnimatedScroll();
-initTooltip();
 initDropdownMenu();
 initMenuMobile();
 initOpeningHours();
@@ -32,3 +31,6 @@ const modal = new Modal(
   '[data-modal="container"]'
 );
 modal.init();
+
+const tooltip = new Tooltip("[data-tooltip]");
+tooltip.init();
