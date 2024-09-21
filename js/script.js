@@ -1,7 +1,7 @@
 import TabNavigation from "./modules/tab-navigation.js";
 import Accordion from "./modules/accordion.js";
 import initAnimatedScroll from "./modules/animated-scroll.js";
-import initModal from "./modules/modal.js";
+import Modal from "./modules/modal.js";
 import initTooltip from "./modules/tooltip.js";
 import initDropdownMenu from "./modules/dropdown-menu.js";
 import initMenuMobile from "./modules/menu-mobile.js";
@@ -26,3 +26,10 @@ const tabNav = new TabNavigation(
   '[data-tab="content"] section'
 );
 tabNav.init();
+
+const modal = new Modal(
+  '[data-modal="open"]',
+  '[data-modal="close"]',
+  '[data-modal="container"]'
+);
+modal.init();
