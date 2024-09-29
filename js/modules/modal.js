@@ -1,33 +1,45 @@
 export default class Modal {
-  constructor(openButton, closeButton, container) {
-    this.openButton = document.querySelector(openButton);
-    this.closeButton = document.querySelector(closeButton);
-    this.container = document.querySelector(container);
-    this.activeClass = "active";
-    this.toggleModal = this.toggleModal.bind(this);
-    this.closeModalOut = this.closeModalOut.bind(this);
+  constructor(botaoAbrir, botaoFechar, containerModal) {
+    this.botaoAbrir = document.querySelector(botaoAbrir);
+    this.botaoFechar = document.querySelector(botaoFechar);
+    this.containerModal = document.querySelector(containerModal);
+
+    // bind this ao callback para
+    // fazer referência ao objeto
+    // da classe
+    this.eventToggleModal = this.eventToggleModal.bind(this);
+    this.cliqueForaModal = this.cliqueForaModal.bind(this);
   }
 
-  toggleModal(event) {
+  // abre ou fecha o modal
+  toggleModal() {
+    this.containerModal.classList.toggle('ativo');
+  }
+
+  // adiciona o evento de toggle ao modal
+  eventToggleModal(event) {
     event.preventDefault();
-    this.container.classList.toggle(this.activeClass);
+    this.toggleModal();
   }
 
-  closeModalOut(event) {
-    if (event.target === this.container) {
-      this.toggleModal(event);
+  // fecha o modal ao clicar do lado de fora
+  cliqueForaModal(event) {
+    if (event.target === this.containerModal) {
+      this.toggleModal();
     }
   }
 
-  addEvent() {
-    this.openButton.addEventListener("click", this.toggleModal);
-    this.closeButton.addEventListener("click", this.toggleModal);
-    this.container.addEventListener("click", this.closeModalOut);
+  // adiciona os eventos aos elementos do modal
+  addModalEvents() {
+    this.botaoAbrir.addEventListener('click', this.eventToggleModal);
+    this.botaoFechar.addEventListener('click', this.eventToggleModal);
+    this.containerModal.addEventListener('click', this.cliqueForaModal);
   }
 
   init() {
-    if (this.openButton && this.closeButton && this.container) {
-      this.addEvent();
+    if (this.botaoAbrir && this.botaoFechar && this.containerModal) {
+      this.addModalEvents();
     }
+    return this;
   }
 }
