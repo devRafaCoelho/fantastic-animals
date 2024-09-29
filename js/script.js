@@ -8,6 +8,7 @@ import MenuMobile from "./modules/menu-mobile.js";
 import OpeningHours from "./modules/opening-hours.js";
 import initFetchAnimals from "./modules/fetch-animals.js";
 import initFecthBitcoin from "./modules/fetch-bitcoin.js";
+import { SlideNav } from "./modules/slide.js";
 
 initFetchAnimals();
 initFecthBitcoin();
@@ -42,3 +43,7 @@ menuMobile.init();
 
 const openingHours = new OpeningHours("[data-week]");
 openingHours.init();
+
+const slide = new SlideNav(".slide", ".slide-wrapper");
+slide.init();
+slide.handleAddEventControl(".custom-control");
